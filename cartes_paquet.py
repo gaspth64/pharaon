@@ -28,7 +28,7 @@ class Carte:
         #au barbu : l'As est plus fort que le Roi, plus fort que la Dame...
         #donc : 11 pour J, 12 pour Q
         #13 pour K et 14 pour As
-        self.valeur = DICO_VALEUR[hauteur] # à compléter
+        self.valeur = DICO_VALEURS[hauteur] # à compléter
 
     def __str__(self):
         #permet de faire print facilement
@@ -50,37 +50,43 @@ class PaquetCartes:
         '''
         mélange le paquet de façon aléatoire
         '''
-        pass
+        random.shuffle(self.cartes)
 
     def couper(self):
         '''
         simule le fait de couper le paquet en deux à un endroit aléatoire
         puis de permuter les deux parties "dessus - dessous"
         '''
-        pass
+        zone_de_coupe=randin(1,self.nb_cartes)
+        self.cartes=self.cartes[zone_de_coupe:]+self.cartes[:zone_de_coupe]
 
     def est_vide(self):
-        pass
+        if self.nb_cartes==0:
+            return True 
+        else:
+            return False
 
     def remplir(self, cartes):
         '''
         cartes est une liste d'objets Carte
         cette méthode ajoute les cartes en question au paquet
         '''
-        pass
+        self.cartes.extend(cartes)
 
     def tirer(self):
         '''
         renvoie la carte tirée au sommet du paquet
         si le paquet est vide, lève une exception
         '''
-        pass
-
+        if self.nb_cartes==0:
+            assert 'paquet vide'
+        else:
+            return self.cartes.pop(0)
 
 def affiche_jeu(liste_cartes):
     for i in range(len(liste_cartes)):
         print(liste_cartes[i])
-        
+
 
 
 
