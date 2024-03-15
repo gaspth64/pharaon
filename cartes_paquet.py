@@ -85,7 +85,7 @@ class PaquetCartes:
 
 def affiche_jeu(liste_cartes):
     for i in range(len(liste_cartes)):
-        print(liste_cartes[i])
+        print(liste_cartes[i], end='')
 
 
 
