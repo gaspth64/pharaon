@@ -15,7 +15,7 @@ HAUTEURS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 DICO_COULEURS = {'c':0, 'd':1, 'h':2, 's':3}
 DICO_HAUTEURS = {'1':0, '2':1, '3':2, '4':3, '5':4,
     '6':5, '7':6, '8':7, '9':8, '10':9, 'J':10, 'Q':11, 'K':12}
-DICO_VALEURS = {'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':10,'D':10,'K':10,}
+DICO_VALEURS = {'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':10,'Q':10,'K':10,}
 #au pharaon, chaque carte représente un nombre de points égale à sa valeur faciale (1 pour l'As, 2 pour 2...)
 #sauf les honneurs qui valent chacun 10 points
 #DICO_VALEURS = ....
