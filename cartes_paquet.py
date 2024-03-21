@@ -83,11 +83,15 @@ class PaquetCartes:
         else:
             return self.cartes.pop(0)
 
+    def getCartes(self):
+        return self.cartes
+
 def affiche_jeu(liste_cartes):
+    '''
+    permet d'afficher en ligne une les cartes d'une liste d'objets carte
+    '''
     for i in range(len(liste_cartes)):
-        print(liste_cartes[i], end='')
-
-
+        print(liste_cartes[i], end=';')
 
 
 #tests : quand vous êtes prêt
@@ -95,7 +99,12 @@ def affiche_jeu(liste_cartes):
 if __name__ == '__main__':
     paq = PaquetCartes(52)
     paq.battre()
+    talon=[]
     for i in range(7):
         c = paq.tirer()
-        print(c)
+        print(c, end=';')
+        talon.append(c)
+    affiche_jeu(talon)
     print(paq.est_vide())
+    paq.remplir(talon)
+    affiche_jeu(paq.getCartes())
