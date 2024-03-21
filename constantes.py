@@ -18,7 +18,6 @@ DICO_HAUTEURS = {'1':0, '2':1, '3':2, '4':3, '5':4,
 DICO_VALEURS = {'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':10,'Q':10,'K':10,}
 #au pharaon, chaque carte représente un nombre de points égale à sa valeur faciale (1 pour l'As, 2 pour 2...)
 #sauf les honneurs qui valent chacun 10 points
-#DICO_VALEURS = ....
 
 # Positions des joueurs en fonction du nombre
 # 2 joueurs : Sud et Nord
