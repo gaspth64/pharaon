@@ -53,8 +53,8 @@ class Partie:
 
         #création des mains des joueurs
         # vides au départ !
-        #à vous
-        self.mains = .................
+        
+        self.mains = [Mainjoueur(nb_par_joueur, lettre) for lettre in POSITIONS[nb_joueurs]]
 
 
     def afficher(self):
