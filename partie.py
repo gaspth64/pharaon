@@ -44,6 +44,7 @@ class Partie:
 
         #génération du paquet de carte pour le jeu
         self.paquet = PaquetCartes(nb_cartes)
+        self.paquet.battre()
         self.tapis = Tapis()
 
         self.nb_joueurs = nb_joueurs
@@ -53,9 +54,12 @@ class Partie:
 
         #création des mains des joueurs
         # vides au départ !
+        self.mains=[]
+        i=0
+        for lettre in POSITIONS[nb_joueurs]:
+            self.mains.append[Mainjoueur([self.paquet[i:i+nb_par_joueur],lettre])]
+            i+=nb_par_joueur
         
-        self.mains = [Mainjoueur(nb_par_joueur, lettre) for lettre in POSITIONS[nb_joueurs]]
-
 
     def afficher(self):
         '''
