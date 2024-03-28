@@ -1,3 +1,5 @@
+from cartes_paquet import *
+
 class Mainjoueur:
 
     def __init__(self, cartes, position='S'):
@@ -40,3 +42,7 @@ class Mainjoueur:
         for carte in self.cartes:
             dico[carte.couleur].append(carte)
         return dico
+
+if __name__=='__main__':
+    
+    main_1 = Mainjoueur()
