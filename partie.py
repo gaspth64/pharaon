@@ -56,7 +56,7 @@ class Partie:
         # vides au départ !
         self.mains=[]
         for lettre in POSITIONS[nb_joueurs]:
-            self.mains.append[Mainjoueur([],lettre)]
+            self.mains.append([Mainjoueur([],lettre)])
            
         
 
@@ -65,7 +65,7 @@ class Partie:
         affiche les jeux des joueurs
         et le tapis
         '''
-        pass
+        print(f'La carte du dessus du tapis est {self.tapis.affiche} ')
         
 
 
