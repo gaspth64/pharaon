@@ -55,10 +55,9 @@ class Partie:
         #création des mains des joueurs
         # vides au départ !
         self.mains=[]
-        i=0
         for lettre in POSITIONS[nb_joueurs]:
-            self.mains.append[Mainjoueur([self.paquet[i:i+nb_par_joueur],lettre])]
-            i+=nb_par_joueur
+            self.mains.append[Mainjoueur([],lettre)]
+           
         
 
     def afficher(self):
@@ -67,6 +66,7 @@ class Partie:
         et le tapis
         '''
         pass
+        
 
 
 
@@ -79,7 +79,7 @@ class Partie:
         for _ in range(self.nb_par_joueur):
             for _ in range(self.nb_joueurs):
                 #on distribue une carte à ce joueur
-                .................
+                self.mains[servi].recevoir(self.paquet.tirer())
                 #au prochain tour, ce sera au joueur suivant
                 servi = (servi + 1) % self.nb_joueurs
 
