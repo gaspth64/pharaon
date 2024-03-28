@@ -56,17 +56,25 @@ class Partie:
         # vides au départ !
         self.mains=[]
         for lettre in POSITIONS[nb_joueurs]:
-            self.mains.append([Mainjoueur([],lettre)])
-           
-        
+            self.mains.append(Mainjoueur([],lettre))
+
+
 
     def afficher(self):
         '''
         affiche les jeux des joueurs
         et le tapis
         '''
-        print(f'La carte du dessus du tapis est {self.tapis.affiche} ')
-        
+        if self.tapis.est_vide():
+            print('Le tapis est vide')
+        else:
+            print(f'La carte du dessus du tapis est {self.tapis.afficher()} ')
+
+        i=1
+        for main in self.mains:
+            print(f"Main du joueur {i} est")
+            main.afficher()
+            i+=1
 
 
 
@@ -96,18 +104,19 @@ class Partie:
         '''
 
         #à vous
-
-
-
         print("on démarre")
-
-
+        self.paquet.battre()
+        self.paquet.couper()
+        self.distribuer()
+        self.tapis.empile(self.paquet.tirer())
+        self.afficher()
 
 
 #test
 if __name__ == '__main__':
     test = Partie()
     test.start()
+
 
 
 
