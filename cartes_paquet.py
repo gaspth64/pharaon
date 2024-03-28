@@ -57,7 +57,7 @@ class PaquetCartes:
         simule le fait de couper le paquet en deux à un endroit aléatoire
         puis de permuter les deux parties "dessus - dessous"
         '''
-        zone_de_coupe=randin(1,self.nb_cartes)
+        zone_de_coupe=random.randint(1,self.nb_cartes)
         self.cartes=self.cartes[zone_de_coupe:]+self.cartes[:zone_de_coupe]
 
     def est_vide(self):
@@ -92,6 +92,7 @@ def affiche_jeu(liste_cartes):
     '''
     for i in range(len(liste_cartes)):
         print(liste_cartes[i], end=';')
+    print('\n')
 
 
 #tests : quand vous êtes prêt

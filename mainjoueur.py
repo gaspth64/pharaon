@@ -12,18 +12,20 @@ class Mainjoueur:
         return len(self.cartes)==0
 
     def trier(self):
-        self.cartes.sort(key=lambda x:x.int_hauteur)
+        if not self.estvide():
+            self.cartes.sort(key=lambda x:x.int_hauteur)
 
     def afficher(self):
         self.trier()
         for carte in self.cartes:
-            print(carte)
+            print(carte, end=';')
+        print('\n')
 
     def recevoir(self, carte):
         self.cartes.append(carte)
 
     def rejeter(self, id_carte):
-        for i in range(len(cartes)):
+        for i in range(len(self.cartes)):
             if self.cartes[i].id==id_carte:
                 return self.cartes.pop(i)
 
@@ -45,4 +47,24 @@ class Mainjoueur:
 
 if __name__=='__main__':
     
-    main_1 = Mainjoueur()
+    paq = PaquetCartes(52)
+    paq.battre()
+    main1=[]
+    main2 = Mainjoueur([])
+    print(main2.estvide())
+    for i in range(12):
+        c = paq.tirer()
+        print(c, end=';')
+        main1.append(c)
+    print('\n')
+    main1 = Mainjoueur(main1, 'N')
+    #afficher test aussi trier
+    main1.afficher()
+    for n in range(6):
+        n=n*2
+        main2.recevoir(main1.rejeter(n))
+    main1.afficher()
+    main2.afficher()
+    print(main2.estvide())
+    print('main1 classée par couleurs : ',main1.classer_couleurs())
+    print('main2 classée par hauteurs',main2.classer_hauteurs())

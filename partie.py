@@ -1,6 +1,6 @@
 import random
 from cartes_paquet import Carte, PaquetCartes
-from mainjoueur import MainJoueur
+from mainjoueur import Mainjoueur
 from tapis import Tapis
 from constantes import *
 
