@@ -1,14 +1,20 @@
-<mxfile host="app.diagrams.net" modified="2024-03-28T08:45:44.533Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" version="24.2.0" etag="XJ1rYnaTkH_4BMnz_Srw" type="github">
+<mxfile host="app.diagrams.net" modified="2024-03-28T15:48:12.234Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="VHOMtiPL1aooL1GjakKV" version="24.2.1" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="jalon_1">
-    <mxGraphModel dx="448" dy="363" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1180" dy="755" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="aMJ-iunlC56PZOkoWYXN-65" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=5;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="38" target="4EVmc5m1H9hbaN7e_XOD-63">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="824" y="628" as="sourcePoint" />
+            <mxPoint x="680" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="62" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeWidth=5;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="29" target="38" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="29" value="&lt;b&gt;Carte (couleur, hauteur)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="469" y="50" width="210" height="220" as="geometry">
+          <mxGeometry x="720" width="210" height="220" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -36,11 +42,74 @@
         <mxCell id="37" value="&lt;b&gt;__str__()&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="29" vertex="1">
           <mxGeometry y="190" width="210" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="63" style="edgeStyle=none;html=1;exitX=-0.011;exitY=0.038;exitDx=0;exitDy=0;entryX=1;entryY=0.053;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;strokeWidth=5;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="38" target="47" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="63" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="38" target="47" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="830" y="730" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" value="&lt;b&gt;Tapis (contenu)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="560" y="770" width="220" height="260" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" value="&lt;b&gt;self.contenu&lt;/b&gt;&amp;nbsp;=&amp;gt; liste d&#39;objets Carte" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="26" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="53" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="52" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="59" value="&lt;b&gt;tapis_vide ()&lt;/b&gt; : renvoie True si Tapis est vide, sinon False" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="60" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="56" value="&lt;b&gt;get_premiere ()&lt;/b&gt; : renvoie la 1ère carte du contenu&amp;nbsp;(sans l&#39;enlever)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="100" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="60" value="&lt;b&gt;empile (x) &lt;/b&gt;: x est un objet Carte que l&#39;on empile sur le tapis" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="140" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="61" value="&lt;b&gt;depile () &lt;/b&gt;: supprime l&#39;objet Carte situé sur le dessus du Tapis et le renvoie" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="180" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="58" value="&lt;b&gt;afficher ()&lt;/b&gt; : affiche &#39;tapis : &#39; et&lt;br&gt;la carte du dessus" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
+          <mxGeometry y="220" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-63" value="&lt;b&gt;Mainjoueur (cartes, position)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="860" y="770" width="220" height="420" as="geometry">
+            <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-64" value="self.cartes &lt;span style=&quot;font-weight: normal;&quot;&gt;(liste d&#39;objets Carte)&lt;/span&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="26" width="220" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-65" value="&lt;b&gt;self.position &lt;/b&gt;(str: &#39;S&#39;, &#39;N&#39;, &#39;E&#39; ou &#39;W&#39;)&lt;b&gt;&amp;nbsp;&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="50" width="220" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-66" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="74" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-69" value="&lt;b&gt;est_vide ()&lt;/b&gt; : renvoie True si la main est vide,&amp;nbsp;sinon False" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="82" width="220" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-67" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;trier ()&lt;/b&gt; : modifie l&#39;attribut cartes en le triant par hauteurs&lt;/span&gt;&lt;/div&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="130" width="220" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="aMJ-iunlC56PZOkoWYXN-63" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;afficher ()&lt;/b&gt; : affiche le jeu trié par hauteurs&lt;/span&gt;&lt;/div&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
+          <mxGeometry y="178" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-70" value="&lt;b&gt;recevoir (carte) &lt;/b&gt;: ajoute cette carte à l&#39;attribut cartes" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="218" width="220" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-71" value="&lt;b&gt;rejeter(id_carte)&lt;/b&gt;&amp;nbsp;&lt;b&gt;&amp;nbsp;&lt;/b&gt;:&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;supprime la carte du jeu et la renvoie comme objet Carte&lt;br&gt;&lt;/span&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="260" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4EVmc5m1H9hbaN7e_XOD-72" value="&lt;b&gt;classer_hauteurs () :&lt;/b&gt;&amp;nbsp;renvoie dico dont clefs = hauteurs et valeurs = liste des cartes de cette hauteur" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="4EVmc5m1H9hbaN7e_XOD-63" vertex="1">
+          <mxGeometry y="300" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aMJ-iunlC56PZOkoWYXN-64" value="&lt;b&gt;classer_couleurs () :&lt;/b&gt;&amp;nbsp;renvoie dico dont clefs = couleurs et valeurs = liste des cartes de cette couleur" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
+          <mxGeometry y="360" width="220" height="60" as="geometry" />
         </mxCell>
         <mxCell id="38" value="&lt;b&gt;PaquetCartes (nb)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="469" y="423" width="210" height="364" as="geometry">
+          <mxGeometry x="720" y="300" width="210" height="370" as="geometry">
             <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -69,64 +138,6 @@
           <mxGeometry y="300" width="210" height="40" as="geometry" />
         </mxCell>
         <mxCell id="57" value="&lt;b&gt;getCartes () :&lt;/b&gt; getter =&amp;gt; liste de Carte" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="38" vertex="1">
-          <mxGeometry y="340" width="210" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="47" value="&lt;b&gt;Tapis (contenu)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="80" y="423" width="220" height="260" as="geometry">
-            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="48" value="&lt;b&gt;self.contenu&lt;/b&gt;&amp;nbsp;=&amp;gt; liste d&#39;objets Carte" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="26" width="220" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="53" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="52" width="220" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="59" value="&lt;b&gt;tapis_vide ()&lt;/b&gt; : renvoie True si Tapis est vide, sinon False" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="60" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="56" value="&lt;b&gt;get_premiere ()&lt;/b&gt; : renvoie la 1ère carte du contenu&amp;nbsp;(sans l&#39;enlever)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="100" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="60" value="&lt;b&gt;empile (x) &lt;/b&gt;: x est un objet Carte que l&#39;on empile sur le tapis" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="140" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="61" value="&lt;b&gt;depile () &lt;/b&gt;: supprime l&#39;objet Carte situé sur le dessus du Tapis et le renvoie" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="180" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="58" value="&lt;b&gt;afficher ()&lt;/b&gt; : affiche &#39;tapis : &#39; et&lt;br&gt;la carte du dessus" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" parent="47" vertex="1">
-          <mxGeometry y="220" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-63" value="&lt;b&gt;Mainjoueur (cartes, position)&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;html=1;whiteSpace=wrap;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="790" y="290" width="210" height="364" as="geometry">
-            <mxRectangle x="340" y="380" width="170" height="26" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-64" value="self.cartes &lt;span style=&quot;font-weight: normal;&quot;&gt;(liste d&#39;objets Carte)&lt;/span&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=1;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="26" width="210" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-65" value="&lt;b&gt;self.position &lt;/b&gt;(str: &#39;S&#39;, &#39;N&#39;, &#39;E&#39; ou &#39;W&#39;)&lt;b&gt;&amp;nbsp;&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="50" width="210" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-66" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="74" width="210" height="8" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-67" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;b&gt;trier ()&lt;/b&gt; : modifie l&#39;attribut cartes&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="82" width="210" height="48" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-68" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;couper () &lt;/b&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;:&amp;nbsp;simule le fait de couper&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;le paquet en 2 à un endroit aléatoire&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;puis de permuter les 2 parties&lt;/span&gt;&lt;/div&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="130" width="210" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-69" value="&lt;b&gt;est_vide ()&lt;/b&gt; : renvoie True si le paquet&amp;nbsp;est vide,&amp;nbsp;sinon False" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="190" width="210" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-70" value="&lt;b&gt;remplir (cartes) &lt;/b&gt;: cartes = liste d&#39;objets Carte, ajoute les cartes de &lt;b&gt;cartes&lt;/b&gt;&amp;nbsp;dans le paquet" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="240" width="210" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-71" value="&lt;b&gt;tirer ()&lt;/b&gt;&amp;nbsp;&lt;b&gt;&amp;nbsp;&lt;/b&gt;:&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;renvoie la carte tirée au sommet du paquet&lt;br&gt;&lt;/span&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
-          <mxGeometry y="300" width="210" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="4EVmc5m1H9hbaN7e_XOD-72" value="&lt;b&gt;getCartes () :&lt;/b&gt; getter =&amp;gt; liste de Carte" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;whiteSpace=wrap;" vertex="1" parent="4EVmc5m1H9hbaN7e_XOD-63">
           <mxGeometry y="340" width="210" height="24" as="geometry" />
         </mxCell>
       </root>
