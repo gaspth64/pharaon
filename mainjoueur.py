@@ -61,7 +61,7 @@ if __name__=='__main__':
     #afficher test aussi trier
     main1.afficher()
     for n in range(6):
-        c = main0[n].id_carte
+        c = main0[n].id
         main2.recevoir(main1.rejeter(c))
     main1.afficher()
     main2.afficher()
