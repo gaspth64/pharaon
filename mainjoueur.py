@@ -49,22 +49,23 @@ if __name__=='__main__':
     
     paq = PaquetCartes(52)
     paq.battre()
-    main1=[]
+    main0=[]
     main2 = Mainjoueur([])
     print(main2.estvide())
     for i in range(12):
         c = paq.tirer()
         print(c, end=';')
-        main1.append(c)
+        main0.append(c)
     print('\n')
-    main1 = Mainjoueur(main1, 'N')
+    main1 = Mainjoueur(main0, 'N')
     #afficher test aussi trier
     main1.afficher()
     for n in range(6):
-        n=n*2
-        main2.recevoir(main1.rejeter(n))
+        c = main0[n].id_carte
+        main2.recevoir(main1.rejeter(c))
     main1.afficher()
     main2.afficher()
     print(main2.estvide())
     print('main1 classée par couleurs : ',main1.classer_couleurs())
     print('main2 classée par hauteurs',main2.classer_hauteurs())
+    
