@@ -68,4 +68,3 @@ if __name__=='__main__':
     print(main2.estvide())
     print('main1 classée par couleurs : ',main1.classer_couleurs())
     print('main2 classée par hauteurs',main2.classer_hauteurs())
-    
