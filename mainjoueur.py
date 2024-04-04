@@ -45,6 +45,39 @@ class Mainjoueur:
             dico[carte.couleur].append(carte)
         return dico
 
+
+# jalon 2bis =>
+
+class MainJoueurIA(MainJoueur):
+
+    def __init__(self, cartes, position='N'):
+        #on appelle le constructeur de la classe parente
+        MainJoueur.__init__(self, cartes, position)
+        #ici c'est tout : pas d'attribut spécifique
+
+    def choix_output(self):
+        '''
+        renvoie l'id de la carte choisie pour rejeter
+        (après avoir vérifié qu'elle existe dans la main de l'IA)
+        '''
+        #jalon_2bis : la carte à rejeter est choisie de manière aléatoire
+        
+        return random.choice(self.cartes).id
+
+    def choix_input(self, carte):
+        '''
+        renvoie : 1 si on ramasse la carte sur la défausse
+                  0 si on pioche au talon
+        '''
+        return random.randint(0,1)
+
+    def compter_points(self):
+        pass
+
+    def score(self, carte):
+        pass
+
+
 if __name__=='__main__':
     
     paq = PaquetCartes(52)
