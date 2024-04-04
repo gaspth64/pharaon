@@ -109,13 +109,39 @@ class Partie:
         self.paquet.couper()
         self.distribuer()
         self.tapis.empile(self.paquet.tirer())
-        self.afficher()
+        tours = 1
+        while tours <= 5:
+            self.afficher()
+            print(f'Debut du tour {tours}, rentrer 1 pour piocher dans le paquet ou 2 dans la défausse')
+            action = int(input('Action:  '))
+            if action == 1:
+                carte_tiree = self.paquet.tirer()
+            #si le jour ne rentre pas un ou deux, il fera l'action de piocher
+            #dans la defausse comme si il aurait mis deux.
+            else:
+                carte_tiree = self.tapis.depile()
+
+            self.mains[0].recevoir(carte_tiree)
+            print(f'vous avez tiré le {carte_tiree}, votre nouvèlle main est: ')
+            self.mains[0].afficher()
+            carte_jetee= input("Entrer l'id de la carte a jeter, ex = sK ou c3:  ")
+            self.mains[0].rejeter(carte_jetee)
+            self.tapis.empile(carte_jetee)
+
+            tours+=1
+            print("__________________________________________________________________________________")
+            tours+=1
+
+
+
 
 
 #test
 if __name__ == '__main__':
     test = Partie()
     test.start()
+
+
 
 
 
