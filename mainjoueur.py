@@ -69,6 +69,7 @@ class MainJoueurIA(MainJoueur):
         renvoie : 1 si on ramasse la carte sur la défausse
                   0 si on pioche au talon
         '''
+        #jalon_2bis : tirage au sort
         return random.randint(0,1)
 
     def compter_points(self):
