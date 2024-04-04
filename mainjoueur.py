@@ -48,11 +48,11 @@ class Mainjoueur:
 
 # jalon 2bis =>
 
-class MainJoueurIA(MainJoueur):
+class MainjoueurIA(Mainjoueur):
 
     def __init__(self, cartes, position='N'):
         #on appelle le constructeur de la classe parente
-        MainJoueur.__init__(self, cartes, position)
+        Mainjoueur.__init__(self, cartes, position)
         #ici c'est tout : pas d'attribut spécifique
 
     def choix_output(self):
@@ -61,7 +61,7 @@ class MainJoueurIA(MainJoueur):
         (après avoir vérifié qu'elle existe dans la main de l'IA)
         '''
         #jalon_2bis : la carte à rejeter est choisie de manière aléatoire
-        
+
         return random.choice(self.cartes).id
 
     def choix_input(self, carte):
@@ -80,7 +80,7 @@ class MainJoueurIA(MainJoueur):
 
 
 if __name__=='__main__':
-    
+
     paq = PaquetCartes(52)
     paq.battre()
     main0=[]

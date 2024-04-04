@@ -1,6 +1,7 @@
+
 import random
 from cartes_paquet import Carte, PaquetCartes
-from mainjoueur import Mainjoueur
+from mainjoueur import Mainjoueur, MainjoueurIA
 from tapis import Tapis
 from constantes import *
 
@@ -55,8 +56,13 @@ class Partie:
         #création des mains des joueurs
         # vides au départ !
         self.mains=[]
+        i=0
         for lettre in POSITIONS[nb_joueurs]:
-            self.mains.append(Mainjoueur([],lettre))
+            if i == 0:
+                self.mains.append(Mainjoueur([],lettre))
+            else:
+                self.mains.append(MainjoueurIA([],lettre))
+            i+=1
 
 
 
@@ -103,7 +109,6 @@ class Partie:
         puis affiche ("on démarre")
         '''
 
-        #à vous
         print("on démarre")
         self.paquet.battre()
         self.paquet.couper()
@@ -124,13 +129,28 @@ class Partie:
             self.mains[0].recevoir(carte_tiree)
             print(f'vous avez tiré le {carte_tiree}, votre nouvèlle main est: ')
             self.mains[0].afficher()
-            carte_jetee= input("Entrer l'id de la carte a jeter, ex = sK ou c3:  ")
-            self.mains[0].rejeter(carte_jetee)
-            self.tapis.empile(carte_jetee)
+            carte_jetee= input("Entrer l'id de la carte a jeter, exemple = sK ou c3:  ")
+            self.tapis.empile(self.mains[0].rejeter(carte_jetee))
+
+            print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _1")
+            #action de l'ia
+
+            for main in self.mains[1:]:
+                choix = main.choix_input(carte_jetee)
+                if choix == 0:
+                    carte_tiree = self.paquet.tirer()
+                else:
+                    carte_tiree = self.tapis.depile()
+
+                main.recevoir(carte_tiree)
+                carte_jetee = main.choix_output()
+                self.tapis.empile(main.rejeter(carte_jetee))
+                print(f"L'ordinateur a piocher {carte_tiree} et a jeter le {carte_jetee} nouvèlle main est: ")
+                main.afficher()
 
             tours+=1
             print("__________________________________________________________________________________")
-            tours+=1
+
 
 
 
@@ -140,17 +160,5 @@ class Partie:
 if __name__ == '__main__':
     test = Partie()
     test.start()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
