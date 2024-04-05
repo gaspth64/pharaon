@@ -44,6 +44,14 @@ class Mainjoueur:
         for carte in self.cartes:
             dico[carte.couleur].append(carte)
         return dico
+    
+        def compter_points(self):
+        '''
+        analyse le jeu du joueur et compte les points,
+        vérifie s'il y a pharaon (True ou False),
+        et renvoie la valeur totale de MainJoueur : tuple (bool, int)
+        '''
+        
 
 
 # jalon 2bis =>
@@ -72,8 +80,6 @@ class MainjoueurIA(Mainjoueur):
         #jalon_2bis : tirage au sort
         return random.randint(0,1)
 
-    def compter_points(self):
-        pass
 
     def score(self, carte):
         pass
