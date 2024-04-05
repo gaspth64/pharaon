@@ -115,21 +115,46 @@ class Partie:
         self.distribuer()
         self.tapis.empile(self.paquet.tirer())
         tours = 1
+        valide=0
         while tours <= 5:
             self.afficher()
             print(f'Debut du tour {tours}, rentrer 1 pour piocher dans le paquet ou 2 dans la défausse')
-            action = int(input('Action:  '))
+            while valide ==0:
+                action = int(input('Action:  '))
+                if action == 1 or action == 2:
+                    valide=1
+                else:
+                    print("L'action n'est pas valide.RTFM")
+            valide=0
             if action == 1:
                 carte_tiree = self.paquet.tirer()
-            #si le jour ne rentre pas un ou deux, il fera l'action de piocher
-            #dans la defausse comme si il aurait mis deux.
             else:
                 carte_tiree = self.tapis.depile()
 
             self.mains[0].recevoir(carte_tiree)
-            print(f'vous avez tiré le {carte_tiree}, votre nouvèlle main est: ')
+            print(f'vous avez tiré le {carte_tiree}, votre nouvelle main est: ')
             self.mains[0].afficher()
-            carte_jetee= input("Entrer l'id de la carte a jeter, exemple = sK ou c3:  ")
+
+            #Test de la validite de la saisie
+            while valide==0:
+                carte_jetee= input("Entrez l'id de la carte a jeter, exemple = sK ou c3:  ")
+                if len(carte_jetee)!=2 and len(carte_jetee)!=3:
+                    print("saisie pas valide.RTFM")
+                else:
+                    if len(carte_jetee)==3:
+                        if carte_jetee[0].lower() in DICO_COULEURS.keys() and \
+                        carte_jetee[1]+carte_jetee[2]=="10":
+                            valide=1
+                        else:
+                            print("saisie pas valide.RTFM")
+                    else:
+                        if carte_jetee[0].lower() in DICO_COULEURS.keys() and \
+                        carte_jetee[1] in DICO_HAUTEURS.keys():
+                            valide=1
+                        else:
+                            print("saisie pas valide.RTFM")
+
+
             self.tapis.empile(self.mains[0].rejeter(carte_jetee))
 
             print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _1")
@@ -160,5 +185,4 @@ class Partie:
 if __name__ == '__main__':
     test = Partie()
     test.start()
-
 
