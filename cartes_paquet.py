@@ -28,7 +28,7 @@ class Carte:
         #au barbu : l'As est plus fort que le Roi, plus fort que la Dame...
         #donc : 11 pour J, 12 pour Q
         #13 pour K et 14 pour As
-        self.valeur = DICO_VALEURS[hauteur] # à compléter
+        self.valeur = DICO_VALEURS[hauteur]
 
     def __str__(self):
         #permet de faire print facilement

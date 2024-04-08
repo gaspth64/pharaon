@@ -3,10 +3,12 @@ from cartes_paquet import *
 class Mainjoueur:
 
     def __init__(self, cartes, position='S'):
-
-
         self.cartes=cartes
         self.position=position
+        #jalon 3
+        self.pts = 0
+        self.pharaon = False
+
 
     def estvide(self):
         return len(self.cartes)==0
@@ -46,35 +48,43 @@ class Mainjoueur:
         return dico
     
     def compter_points(self):
-    '''
-    analyse le jeu du joueur et compte les points,
-    vérifie s'il y a pharaon (True ou False),
-    et renvoie la valeur totale de MainJoueur : tuple (bool, int)
-    '''
-
+        '''
+        analyse le jeu du joueur et compte les points,
+        met à jour l'attribut self.pharaon et self.pts
+        '''
+        #on compte d'abord les points
+        self.pts = 0
+        for carte in self.cartes:
+            self.pts += 
 
 
     
     def choix_input(self,carte):
-    '''
-    renvoie : 1 si on ramasse la carte sur la défausse
+        '''
+        renvoie : 1 si on ramasse la carte sur la défausse
                 0 si on pioche au talon
-    '''
-    print('Entrer 0 pour piocher dans le paquet ou 1 dans la défausse')
-    while True:
-        action = int(input('Action:  '))
-        if action == 0 or action == 1:
-            return action
-        else:
-            print("L'action n'est pas valide.RTFM")
+        '''
+        print('Entrer 0 pour piocher dans le paquet ou 1 dans la défausse')
+        while True:
+            action = int(input('Action:  '))
+            if action == 0 or action == 1:
+                return action
+            else:
+                print("L'action n'est pas valide.RTFM")
 
 
 
 
     def choix_output(self):
         '''
+        analyse le jeu du joueur et compte les points,
+        met à jour l'attribut self.pharaon et self.pts
         renvoie l'id de la carte a rejeter
         '''
+        #on compte d'abord les points
+        self.pts = 0
+        for carte in self.cartes:
+            self.pts += 
 
         while True:
             carte_jetee_provi= input("Entrez l'id de la carte a jeter, exemple = sK ou c3:  ")
