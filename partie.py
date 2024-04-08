@@ -98,9 +98,6 @@ class Partie:
                 servi = (servi + 1) % self.nb_joueurs
 
 
-
-
-
     def start(self):
         '''
         mélange le paquet, coupe, distribue les cartes
@@ -115,68 +112,30 @@ class Partie:
         self.distribuer()
         self.tapis.empile(self.paquet.tirer())
         tours = 1
-        valide=0
-        while tours <= 5:
+        joueur=self.donneur
+
+        while tours <= 10:
             self.afficher()
-            print(f'Debut du tour {tours}, rentrer 1 pour piocher dans le paquet ou 2 dans la défausse')
-            while valide ==0:
-                action = int(input('Action:  '))
-                if action == 1 or action == 2:
-                    valide=1
-                else:
-                    print("L'action n'est pas valide.RTFM")
-            valide=0
-            if action == 1:
+            print(f'Debut du tour {tours}')
+
+            action = self.mains[joueur].choix_input(self.tapis.get_premiere())
+
+            if action == 0:
                 carte_tiree = self.paquet.tirer()
             else:
                 carte_tiree = self.tapis.depile()
 
-            self.mains[0].recevoir(carte_tiree)
-            print(f'vous avez tiré le {carte_tiree}, votre nouvelle main est: ')
-            self.mains[0].afficher()
+            self.mains[joueur].recevoir(carte_tiree)
+            print(f'tiré le {carte_tiree}, la nouvelle main est: ')
+            self.mains[joueur].afficher()
 
-            #Test de la validite de la saisie
-            while valide==0:
-                carte_jetee= input("Entrez l'id de la carte a jeter, exemple = sK ou c3:  ")
-                if len(carte_jetee)!=2 and len(carte_jetee)!=3:
-                    print("saisie pas valide.RTFM")
-                else:
-                    if len(carte_jetee)==3:
-                        if carte_jetee[0].lower() in DICO_COULEURS.keys() and \
-                        carte_jetee[1]+carte_jetee[2]=="10":
-                            valide=1
-                        else:
-                            print("saisie pas valide.RTFM")
-                    else:
-                        if carte_jetee[0].lower() in DICO_COULEURS.keys() and \
-                        carte_jetee[1] in DICO_HAUTEURS.keys():
-                            valide=1
-                        else:
-                            print("saisie pas valide.RTFM")
+            id_carte_a_jetee = self.mains[joueur].choix_output()
+            print(f'jeté le {id_carte_a_jetee}')
 
-
-            self.tapis.empile(self.mains[0].rejeter(carte_jetee))
-
-            print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _1")
-            #action de l'ia
-
-            for main in self.mains[1:]:
-                choix = main.choix_input(carte_jetee)
-                if choix == 0:
-                    carte_tiree = self.paquet.tirer()
-                else:
-                    carte_tiree = self.tapis.depile()
-
-                main.recevoir(carte_tiree)
-                carte_jetee = main.choix_output()
-                self.tapis.empile(main.rejeter(carte_jetee))
-                print(f"L'ordinateur a piocher {carte_tiree} et a jeter le {carte_jetee} nouvèlle main est: ")
-                main.afficher()
-
+            self.tapis.empile(self.mains[joueur].rejeter(id_carte_a_jetee))
+            print("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _")
             tours+=1
-            print("__________________________________________________________________________________")
-
-
+            joueur = (joueur+1)%self.nb_joueurs
 
 
 
@@ -185,4 +144,3 @@ class Partie:
 if __name__ == '__main__':
     test = Partie()
     test.start()
-
