@@ -51,6 +51,10 @@ class Mainjoueur:
     vérifie s'il y a pharaon (True ou False),
     et renvoie la valeur totale de MainJoueur : tuple (bool, int)
     '''
+
+
+
+    
     def choix_input(self,carte):
     '''
     renvoie : 1 si on ramasse la carte sur la défausse
