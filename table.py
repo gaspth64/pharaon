@@ -74,13 +74,11 @@ class Table:
             if hidden == False:
                 #ici, on doit créer sur le canvas l'image de la carte
                 #l'objet image correspondant se trouve dans le dicos_images
-                #A vous :
-                .....................................
+                
 
             else:
                 #ici, le jeu doit être caché, donc on affiche le dos
-                #A vous :
-                .....................................
+                
 
             x = x + espace * dx
             y = y + espace * dy
@@ -106,19 +104,15 @@ class Table:
 
         #le talon
         #A l'emplacement du talon, on affiche l'image du dos d'une carte
-        #à vous
-        .....................................
+        
 
         #le tapis
         if not tapis.est_vide():
             #A l'emplacement du tapis, on affiche sur le canvas l'image de
             #la première carte se trouvant sur la pile de défausse
-            #à vous :
-            ...........................................
 
 
-
-        self.f.update()
+            self.f.update()
 
 if __name__ == '__main__':
     #à vous d'écrire des tests pour vérifier le fonctionnement de ce module
