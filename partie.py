@@ -66,7 +66,7 @@ class Partie:
 
 
 
-    def afficher(self):
+    def afficher_allHands(self):
         '''
         affiche les jeux des joueurs
         et le tapis
@@ -81,6 +81,21 @@ class Partie:
             print(f"Main du joueur {i} est")
             main.afficher()
             i+=1
+
+    def afficher(self):
+        '''
+        affiche la main du joueur
+        et le tapis
+        mais pas celle(s) de(s) IA
+        '''
+        if self.tapis.est_vide():
+            print('Le tapis est vide')
+        else:
+            print(self.tapis.afficher())
+
+        print(f"Votre main :")
+        self.mains[0].afficher()
+        
 
 
 
@@ -106,18 +121,21 @@ class Partie:
         puis affiche ("on démarre")
         '''
 
-        print("on démarre")
+        
         self.paquet.battre()
         self.paquet.couper()
         self.distribuer()
         self.tapis.empile(self.paquet.tirer())
         tours = 1
         joueur=self.donneur
+        print("on démarre")
 
-        while tours <= 10:
-            self.afficher()
+        while True:
+                
             print(f'Debut du tour {tours}')
 
+            self.afficher()
+            
             action = self.mains[joueur].choix_input(self.tapis.get_premiere())
 
             if action == 0:

@@ -23,11 +23,7 @@ class Carte:
         self.int_hauteur = DICO_HAUTEURS[hauteur]+1
         self.dessin = self.JEU_IMAGES[DICO_COULEURS[couleur]][DICO_HAUTEURS[hauteur]]
         self.id = couleur+hauteur
-        #valeur : dépend du jeu !
         #au pharaon 1 pour l'As, 2 pour le 2, etc et 10 pour les honneurs
-        #au barbu : l'As est plus fort que le Roi, plus fort que la Dame...
-        #donc : 11 pour J, 12 pour Q
-        #13 pour K et 14 pour As
         self.valeur = DICO_VALEURS[hauteur]
 
     def __str__(self):

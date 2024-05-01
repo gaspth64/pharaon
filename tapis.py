@@ -17,7 +17,7 @@ class Tapis:
 
     def afficher(self):
         assert self.contenu != [], "tapis vide"
-        return f'tapis : , {self.contenu[-1]}'
+        return f'Haut du tapis : {self.contenu[-1]}'
 
 if __name__=='__main__':
     t = Tapis()

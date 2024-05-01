@@ -7,6 +7,7 @@ class Mainjoueur:
         self.position=position
         #jalon 3
         self.pts = 0
+        self.figure = 0
         self.pharaon = False
 
 
@@ -34,9 +35,9 @@ class Mainjoueur:
     def classer_hauteurs(self):
         dico={}
         for carte in self.cartes:
-            dico[carte.hauteur]=[]
+            dico[carte.int_hauteur]=[]
         for carte in self.cartes:
-            dico[carte.hauteur].append(carte)
+            dico[carte.int_hauteur].append(carte)
         return dico
 
     def classer_couleurs(self):
@@ -47,24 +48,82 @@ class Mainjoueur:
             dico[carte.couleur].append(carte)
         return dico
     
+    def detecter_carre_brelan(self, cartes_libres):
+        '''
+        analyse une liste de cartes
+        renvoie une liste des cartes ne formant ni un carré, ni un brelan
+        et met à jour self.pts en retirant les points des cartes formant une des 2 figure
+        '''
+        trie_hauteur = cartes_libres.classer_hauteurs()
+        self.figure -= 1
+        #on parcourt valeur par valeur
+        for hauteur in trie_hauteur:
+            #pour voir s'il y a plus de 3 cartes de la même valeur 
+            if len(trie_hauteur[hauteur]) >= 3:
+                #on signale la figure à l'attribut concerné de l'instance
+                self.figure += 1
+                #on retire leurs valeurs si on trouve une figure
+                self.pts -= (hauteur*len(trie_hauteur[hauteur]))
+                #on tetire les cartes des cartes libres
+                cartes_libres.remove(c for c in trie_hauteur[hauteur])
+        #on renvoie les cartes encore aptes à former une suite
+        return cartes_libres
+
+    def detecter_suite(self, cartes_libres):
+        '''
+        analyse la main
+        renvoie une liste des cartes ne formant pas une suite
+        et met à jour self.pts en retirant les points des cartes formant cette figure
+        '''
+        trie_couleur = cartes_libres.classer_couleurs()
+        self.figure -= 1
+        #on parcourt couleur par couleur
+        for couleur in trie_couleur:
+            #pour voir s'il y a 3 cartes dans la couleur
+            if len(trie_couleur[couleur]) >= 3:
+                #on créer une liste vide pour les valeurs des hauteurs
+                hauteurs_nbr = []
+                #on ajoute le nombre de la hauteur 
+                for carte in trie_couleur[couleur]:
+                    hauteurs_nbr.append(carte.int_hauteur)
+                #on vérifie s'il y une suite
+                for i in range(len(hauteurs_nbr)):
+                    if (hauteurs_nbr[i]+1)%13 == hauteurs_nbr[(i+1)%len(hauteurs_nbr)]:
+                        if (hauteurs_nbr[i]+2)%13 == hauteurs_nbr[(i+2)%len(hauteurs_nbr)]:
+                            #on signale la figure à l'attribut concerné de l'instance
+                            self.figure += 1
+                            suite = [hauteurs_nbr[i],hauteurs_nbr[i+1%len(hauteurs_nbr)],hauteurs_nbr[i+2%len(hauteurs_nbr)]]
+                            #on retire leurs valeurs si on trouve une figure
+                            self.pts -= sum(c.valeur() for c in suite)
+                            #on retire les cartes  des cartes libres
+                            cartes_libres.remove(c for c in suite)
+        #on renvoie les cartes formant un carré ou un brelan
+        return cartes_libres
+
     def compter_points(self):
         '''
         analyse le jeu du joueur et compte les points,
         met à jour l'attribut self.pharaon et self.pts
         '''
-        #on compte d'abord les points
+        #on compte d'abord les points de toutes les cartes
         self.pts = 0
         for carte in self.cartes:
-            self.pts += 
-
-
+            self.pts += carte.valeur
+        
+        #on cherche les figures en procédant dans deux sens différents
+        if len(self.detecter_carre_brelan(self.detecter_suite(self.cartes))) <= 1 \
+                and self.pts <= 5:
+            self.pharaon = True
+        elif len(self.detecter_suite(self.detecter_carre_brelan(self.cartes))) <= 1 \
+                and self.pts <= 5:
+            self.pharaon = True
     
-    def choix_input(self,carte):
+    def choix_input(self, carte):
         '''
         renvoie : 1 si on ramasse la carte sur la défausse
                 0 si on pioche au talon
         '''
-        print('Entrer 0 pour piocher dans le paquet ou 1 dans la défausse')
+        print('Entrez pour piocher :\n- dans le paquet : 0\n- dans la défausse : 1\n')
         while True:
             action = int(input('Action:  '))
             if action == 0 or action == 1:
@@ -77,17 +136,14 @@ class Mainjoueur:
 
     def choix_output(self):
         '''
-        analyse le jeu du joueur et compte les points,
-        met à jour l'attribut self.pharaon et self.pts
         renvoie l'id de la carte a rejeter
+        si pharaon, renvoie False
         '''
-        #on compte d'abord les points
-        self.pts = 0
-        for carte in self.cartes:
-            self.pts += 
+        #on met à jour self.pts et self.pharaon
+        self.compter_points()
 
         while True:
-            carte_jetee_provi= input("Entrez l'id de la carte a jeter, exemple = sK ou c3:  ")
+            carte_jetee_provi = input("Entrez l'id de la carte a jeter, exemple = sK ou c3:  ")
             carte_jetee=''
             for i in range(len(carte_jetee_provi)):
                 if carte_jetee_provi[i] in DICO_VERIF.keys():
@@ -133,12 +189,13 @@ class MainjoueurIA(Mainjoueur):
 
 
 if __name__=='__main__':
-
+    print('on créer un paquet que de 52 cartes')
     paq = PaquetCartes(52)
+    print('on le bat')
     paq.battre()
     main0=[]
     main2 = Mainjoueur([])
-    print(main2.estvide())
+    print('on a créer une main, est-elle vide :',main2.estvide())
     for i in range(12):
         c = paq.tirer()
         print(c, end=';')
@@ -147,6 +204,12 @@ if __name__=='__main__':
     main1 = Mainjoueur(main0, 'N')
     #afficher test aussi trier
     main1.afficher()
+    print(main1.compter_points())
+    print('\n')
+    print('\n')
+    print('\n')
+    print('\n')
+    print('\n')
     for n in range(6):
         c = main0[n].id
         main2.recevoir(main1.rejeter(c))
