@@ -132,10 +132,10 @@ class Partie:
 
         while True:
                 
-            print(f'Debut du tour {tours}')
+            print(f' << Debut du tour {tours} >> ')
 
             if self.mains[joueur].pharaon == True:
-                print('pharaon')
+                print(f'++++++++++\n\n')
 
             self.afficher()
             
