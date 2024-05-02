@@ -32,19 +32,19 @@ class Mainjoueur:
             if self.cartes[i].id==id_carte:
                 return self.cartes.pop(i)
 
-    def classer_hauteurs(self):
+    def classer_hauteurs(self, lst):
         dico={}
-        for carte in self.cartes:
+        for carte in lst:
             dico[carte.int_hauteur]=[]
-        for carte in self.cartes:
+        for carte in lst:
             dico[carte.int_hauteur].append(carte)
         return dico
 
-    def classer_couleurs(self):
+    def classer_couleurs(self, lst):
         dico={}
-        for carte in self.cartes:
+        for carte in lst:
             dico[carte.couleur]=[]
-        for carte in self.cartes:
+        for carte in lst:
             dico[carte.couleur].append(carte)
         return dico
     
@@ -75,7 +75,7 @@ class Mainjoueur:
         renvoie une liste des cartes ne formant pas une suite
         et met à jour self.pts en retirant les points des cartes formant cette figure
         '''
-        trie_couleur = cartes_libres.classer_couleurs()
+        trie_couleur = self.classer_couleurs()
         self.figure -= 1
         #on parcourt couleur par couleur
         for couleur in trie_couleur:
