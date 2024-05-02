@@ -181,7 +181,7 @@ class Mainjoueur:
                     return carte_jetee
             print("saisie pas valide.RTFM")
 
-        
+
 
 
 # jalon 2bis =>
