@@ -1,5 +1,6 @@
 from cartes_paquet import *
 from copy import deepcopy
+
 class Mainjoueur:
 
     def __init__(self, cartes, position='S'):
