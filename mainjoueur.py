@@ -75,7 +75,7 @@ class Mainjoueur:
         renvoie une liste des cartes ne formant pas une suite
         et met à jour self.pts en retirant les points des cartes formant cette figure
         '''
-        trie_couleur = cartes_libres.classer_couleurs()
+        trie_couleur = self.classer_couleurs()
         self.figure -= 1
         #on parcourt couleur par couleur
         for couleur in trie_couleur:
@@ -105,11 +105,9 @@ class Mainjoueur:
         analyse le jeu du joueur et compte les points,
         met à jour l'attribut self.pharaon et self.pts
         '''
-        #on compte d'abord les points de toutes les cartes
-        self.pts = 0
-        for carte in self.cartes:
-            self.pts += carte.valeur
-
+        i=0
+        while i < 2:
+            cartes_libres = 
         #on cherche les figures en procédant dans deux sens différents
         if len(self.detecter_carre_brelan(self.detecter_suite(self.cartes))) <= 1 \
                 and self.pts <= 5:
