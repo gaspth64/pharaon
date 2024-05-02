@@ -134,6 +134,9 @@ class Partie:
                 
             print(f'Debut du tour {tours}')
 
+            if self.mains[joueur].pharaon == True:
+                print('pharaon')
+
             self.afficher()
             
             action = self.mains[joueur].choix_input(self.tapis.get_premiere())

@@ -1,5 +1,5 @@
 from cartes_paquet import *
-
+from copy import deepcopy
 class Mainjoueur:
 
     def __init__(self, cartes, position='S'):
@@ -48,75 +48,102 @@ class Mainjoueur:
             dico[carte.couleur].append(carte)
         return dico
     
-    def detecter_carre_brelan(self, cartes_libres):
-        '''
-        analyse une liste de cartes
-        renvoie une liste des cartes ne formant ni un carré, ni un brelan
-        et met à jour self.pts en retirant les points des cartes formant une des 2 figure
-        '''
-        trie_hauteur = cartes_libres.classer_hauteurs()
-        self.figure -= 1
-        #on parcourt valeur par valeur
-        for hauteur in trie_hauteur:
-            #pour voir s'il y a plus de 3 cartes de la même valeur 
-            if len(trie_hauteur[hauteur]) >= 3:
-                #on signale la figure à l'attribut concerné de l'instance
-                self.figure += 1
-                #on retire leurs valeurs si on trouve une figure
-                self.pts -= (hauteur*len(trie_hauteur[hauteur]))
-                #on tetire les cartes des cartes libres
-                cartes_libres.remove(c for c in trie_hauteur[hauteur])
-        #on renvoie les cartes encore aptes à former une suite
-        return cartes_libres
-
-    def detecter_suite(self, cartes_libres):
-        '''
-        analyse la main
-        renvoie une liste des cartes ne formant pas une suite
-        et met à jour self.pts en retirant les points des cartes formant cette figure
-        '''
-        trie_couleur = cartes_libres.classer_couleurs()
-        self.figure -= 1
-        #on parcourt couleur par couleur
-        for couleur in trie_couleur:
-            #pour voir s'il y a 3 cartes dans la couleur
-            if len(trie_couleur[couleur]) >= 3:
-                #on créer une liste vide pour les valeurs des hauteurs
-                hauteurs_nbr = []
-                #on ajoute le nombre de la hauteur 
-                for carte in trie_couleur[couleur]:
-                    hauteurs_nbr.append(carte.int_hauteur)
-                #on vérifie s'il y une suite
-                for i in range(len(hauteurs_nbr)):
-                    if (hauteurs_nbr[i]+1)%13 == hauteurs_nbr[(i+1)%len(hauteurs_nbr)]:
-                        if (hauteurs_nbr[i]+2)%13 == hauteurs_nbr[(i+2)%len(hauteurs_nbr)]:
-                            #on signale la figure à l'attribut concerné de l'instance
-                            self.figure += 1
-                            suite = [hauteurs_nbr[i],hauteurs_nbr[i+1%len(hauteurs_nbr)],hauteurs_nbr[i+2%len(hauteurs_nbr)]]
-                            #on retire leurs valeurs si on trouve une figure
-                            self.pts -= sum(c.valeur() for c in suite)
-                            #on retire les cartes  des cartes libres
-                            cartes_libres.remove(c for c in suite)
-        #on renvoie les cartes formant un carré ou un brelan
-        return cartes_libres
 
     def compter_points(self):
         '''
         analyse le jeu du joueur et compte les points,
         met à jour l'attribut self.pharaon et self.pts
         '''
-        #on compte d'abord les points de toutes les cartes
-        self.pts = 0
-        for carte in self.cartes:
-            self.pts += carte.valeur
-        
-        #on cherche les figures en procédant dans deux sens différents
-        if len(self.detecter_carre_brelan(self.detecter_suite(self.cartes))) <= 1 \
-                and self.pts <= 5:
-            self.pharaon = True
-        elif len(self.detecter_suite(self.detecter_carre_brelan(self.cartes))) <= 1 \
-                and self.pts <= 5:
-            self.pharaon = True
+        t=0
+        while t < 2:
+            
+            if t == 1:
+                cartes_libres = deepcopy(self)
+                #on cherche un potentiel carré ou brelan
+                dico_hauteurs = cartes_libres.classer_hauteurs()
+                for hauteur in dico_hauteurs:
+                    #pour voir s'il y a plus de 3 cartes de la même valeur 
+                    if len(dico_hauteurs[hauteur]) >= 3:
+                        #si il y a une figure, on retire les cartes de la hauteur concernée
+                        for carte in dico_hauteurs[hauteur]:
+                            cartes_libres.rejeter(carte.id)
+                            
+                        
+                #on cherche une potentielle suite,
+                dico_couleurs = cartes_libres.classer_couleurs()
+                for couleur in dico_couleurs:
+                    #on créer une variable contenant la taille de la liste des cartes de la couleur
+                    taille = len(dico_couleurs[couleur])
+                    #pour voir s'il y a 3 cartes dans la couleur
+                    if taille >= 3:
+                        #on s'assure qu'elles soient triées
+                        dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
+                        
+                        #on parcourt les cartes de la couleur indice par indice
+                        for i in range(taille):
+                            #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
+                            if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur][i].int_hauteur+1)%14:
+                                #si c'est le cas on vérifie celle d'après
+                                if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur][i].int_hauteur+2)%14:
+                                    #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
+                                    #si il y a une figure, on retire les cartes de la hauteur concernée
+                                    cartes_libres.rejeter(dico_couleurs[couleur][i].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
+
+                #il faut désormais faire les comptes de ce qu'il reste dans cartes_libres
+                if len(cartes_libres.cartes) == 0 or (len(cartes_libres.cartes) == 1 and cartes_libres.cartes[0].valeur <= 5):
+                    self.pharaon=True
+
+                self.pts = 0
+                for c in cartes_libres.cartes:
+                    self.pts += c.valeur
+                    
+            elif t==2:
+            
+                cartes_libres = deepcopy(self)        
+                #on cherche une potentielle suite,
+                dico_couleurs = cartes_libres.classer_couleurs()
+                for couleur in dico_couleurs:
+                    #on créer une variable contenant la taille de la liste des cartes de la couleur
+                    taille = len(dico_couleurs[couleur])
+                    #pour voir s'il y a 3 cartes dans la couleur
+                    if taille >= 3:
+                        #on s'assure qu'elles soient triées
+                        dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
+                        
+                        #on parcourt les cartes de la couleur indice par indice
+                        for i in range(taille):
+                            #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
+                            if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+1)%14:
+                                #si c'est le cas on vérifie celle d'après
+                                if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+2)%14:
+                                    #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
+                                    #si il y a une figure, on retire les cartes de la hauteur concernée
+                                    cartes_libres.rejeter(dico_couleurs[couleur][i].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
+
+                #on cherche un potentiel carré ou brelan
+                dico_hauteurs = cartes_libres.classer_hauteurs()
+                for hauteur in dico_hauteurs:
+                    #pour voir s'il y a plus de 3 cartes de la même valeur 
+                    if len(dico_hauteurs[hauteur]) >= 3:
+                        #si il y a une figure, on retire les cartes de la hauteur concernée
+                        for carte in dico_hauteurs[hauteur]:
+                            cartes_libres.rejeter(carte.id)
+                            
+                
+                #il faut désormais faire les comptes de ce qu'il reste dans cartes_libres
+                if len(cartes_libres.cartes) == 0 or (len(cartes_libres.cartes) == 1 and cartes_libres.cartes[0].valeur <= 5):
+                    self.pharaon=True
+
+                pts_deuxieme_sens = 0
+                for c in cartes_libres.cartes:
+                    pts_deuxieme_sens += c.valeur
+                
+                self.pts = max(self.pts, pts_deuxieme_sens)
+            t += 1
     
     def choix_input(self, carte):
         '''
@@ -189,32 +216,22 @@ class MainjoueurIA(Mainjoueur):
 
 
 if __name__=='__main__':
-    print('on créer un paquet que de 52 cartes')
+    print('- on créer un paquet que de 52 cartes')
     paq = PaquetCartes(52)
-    print('on le bat')
+    print('- on le bat')
     paq.battre()
     main0=[]
     main2 = Mainjoueur([])
-    print('on a créer une main, est-elle vide :',main2.estvide())
-    for i in range(12):
+    print('- on a créer une main, est-elle vide :',main2.estvide())
+    for i in range(7):
         c = paq.tirer()
-        print(c, end=';')
+        print('carte tirée du paquet : ',c,'\n')
         main0.append(c)
-    print('\n')
     main1 = Mainjoueur(main0, 'N')
     #afficher test aussi trier
+    print(' MAIN 1 :')
     main1.afficher()
-    print(main1.compter_points())
-    print('\n')
-    print('\n')
-    print('\n')
-    print('\n')
-    print('\n')
-    for n in range(6):
-        c = main0[n].id
-        main2.recevoir(main1.rejeter(c))
-    main1.afficher()
-    main2.afficher()
-    print(main2.estvide())
-    print('main1 classée par couleurs : ',main1.classer_couleurs())
-    print('main2 classée par hauteurs',main2.classer_hauteurs())
+    main1.compter_points()
+    print('Valeur de la main 1 : ',main1.pts)
+    print("Y'a-t-il Pharaon ? : ", main1.pharaon)
+    
