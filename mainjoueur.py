@@ -54,7 +54,7 @@ class Mainjoueur:
         renvoie une liste des cartes ne formant ni un carré, ni un brelan
         et met à jour self.pts en retirant les points des cartes formant une des 2 figure
         '''
-        trie_hauteur = cartes_libres.classer_hauteurs()
+        trie_hauteur = self.classer_hauteurs(cartes_libres)
         self.figure -= 1
         #on parcourt valeur par valeur
         for hauteur in trie_hauteur:
@@ -75,7 +75,7 @@ class Mainjoueur:
         renvoie une liste des cartes ne formant pas une suite
         et met à jour self.pts en retirant les points des cartes formant cette figure
         '''
-        trie_couleur = self.classer_couleurs()
+        trie_couleur = self.classer_couleurs(cartes_libres)
         self.figure -= 1
         #on parcourt couleur par couleur
         for couleur in trie_couleur:
