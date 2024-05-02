@@ -32,33 +32,33 @@ class Mainjoueur:
             if self.cartes[i].id==id_carte:
                 return self.cartes.pop(i)
 
-    def classer_hauteurs(self, lst):
+    def classer_hauteurs(self):
         dico={}
-        for carte in lst:
+        for carte in self.cartes:
             dico[carte.int_hauteur]=[]
-        for carte in lst:
+        for carte in self.cartes:
             dico[carte.int_hauteur].append(carte)
         return dico
 
-    def classer_couleurs(self, lst):
+    def classer_couleurs(self):
         dico={}
-        for carte in lst:
+        for carte in self.cartes:
             dico[carte.couleur]=[]
-        for carte in lst:
+        for carte in self.cartes:
             dico[carte.couleur].append(carte)
         return dico
-    
+
     def detecter_carre_brelan(self, cartes_libres):
         '''
         analyse une liste de cartes
         renvoie une liste des cartes ne formant ni un carré, ni un brelan
         et met à jour self.pts en retirant les points des cartes formant une des 2 figure
         '''
-        trie_hauteur = self.classer_hauteurs(cartes_libres)
+        trie_hauteur = cartes_libres.classer_hauteurs()
         self.figure -= 1
         #on parcourt valeur par valeur
         for hauteur in trie_hauteur:
-            #pour voir s'il y a plus de 3 cartes de la même valeur 
+            #pour voir s'il y a plus de 3 cartes de la même valeur
             if len(trie_hauteur[hauteur]) >= 3:
                 #on signale la figure à l'attribut concerné de l'instance
                 self.figure += 1
@@ -75,7 +75,7 @@ class Mainjoueur:
         renvoie une liste des cartes ne formant pas une suite
         et met à jour self.pts en retirant les points des cartes formant cette figure
         '''
-        trie_couleur = self.classer_couleurs(cartes_libres)
+        trie_couleur = cartes_libres.classer_couleurs()
         self.figure -= 1
         #on parcourt couleur par couleur
         for couleur in trie_couleur:
@@ -83,7 +83,7 @@ class Mainjoueur:
             if len(trie_couleur[couleur]) >= 3:
                 #on créer une liste vide pour les valeurs des hauteurs
                 hauteurs_nbr = []
-                #on ajoute le nombre de la hauteur 
+                #on ajoute le nombre de la hauteur
                 for carte in trie_couleur[couleur]:
                     hauteurs_nbr.append(carte.int_hauteur)
                 #on vérifie s'il y une suite
@@ -109,7 +109,7 @@ class Mainjoueur:
         self.pts = 0
         for carte in self.cartes:
             self.pts += carte.valeur
-        
+
         #on cherche les figures en procédant dans deux sens différents
         if len(self.detecter_carre_brelan(self.detecter_suite(self.cartes))) <= 1 \
                 and self.pts <= 5:
@@ -117,7 +117,7 @@ class Mainjoueur:
         elif len(self.detecter_suite(self.detecter_carre_brelan(self.cartes))) <= 1 \
                 and self.pts <= 5:
             self.pharaon = True
-    
+
     def choix_input(self, carte):
         '''
         renvoie : 1 si on ramasse la carte sur la défausse
@@ -154,7 +154,7 @@ class Mainjoueur:
                     return carte_jetee
             print("saisie pas valide.RTFM")
 
-        
+
 
 
 # jalon 2bis =>
