@@ -153,9 +153,9 @@ class Mainjoueur:
         '''
         print('Entrez pour piocher :\n- dans le paquet : 0\n- dans la défausse : 1\n')
         while True:
-            action = int(input('Action:  '))
-            if action == 0 or action == 1:
-                return action
+            action = input('Action:  ')
+            if int(action) == 0 or int(action) == 1:
+                return int(action)
             else:
                 print("L'action n'est pas valide.RTFM")
 
