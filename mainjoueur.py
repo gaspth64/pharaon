@@ -57,7 +57,7 @@ class Mainjoueur:
         '''
         t=0
         while t < 2:
-            
+            t += 1
             if t == 1:
                 cartes_libres = deepcopy(self)
                 #on cherche un potentiel carré ou brelan
@@ -144,7 +144,7 @@ class Mainjoueur:
                     pts_deuxieme_sens += c.valeur
                 
                 self.pts = max(self.pts, pts_deuxieme_sens)
-            t += 1
+            
     
     def choix_input(self, carte):
         '''
