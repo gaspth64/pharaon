@@ -74,9 +74,9 @@ class Table:
             if hidden == False:
                 #ici, on doit créer sur le canvas l'image de la carte
                 #l'objet image correspondant se trouve dans le dicos_images
-                
+                pass
 
-            else:
+            #else:
                 #ici, le jeu doit être caché, donc on affiche le dos
                 
 
