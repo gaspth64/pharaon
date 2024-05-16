@@ -57,7 +57,7 @@ class Mainjoueur:
         '''
         t=0
         while t < 2:
-            
+            t += 1
             if t == 1:
                 cartes_libres = deepcopy(self)
                 #on cherche un potentiel carré ou brelan
@@ -144,7 +144,7 @@ class Mainjoueur:
                     pts_deuxieme_sens += c.valeur
                 
                 self.pts = max(self.pts, pts_deuxieme_sens)
-            t += 1
+            
     
     def choix_input(self, carte):
         '''
@@ -153,9 +153,9 @@ class Mainjoueur:
         '''
         print('Entrez pour piocher :\n- dans le paquet : 0\n- dans la défausse : 1\n')
         while True:
-            action = int(input('Action:  '))
-            if action == 0 or action == 1:
-                return action
+            action = input('Action:  ')
+            if int(action) == 0 or int(action) == 1:
+                return int(action)
             else:
                 print("L'action n'est pas valide.RTFM")
 
