@@ -109,21 +109,21 @@ class Mainjoueur:
                     #on créer une variable contenant la taille de la liste des cartes de la couleur
                     taille = len(dico_couleurs[couleur])
                     #pour voir s'il y a 3 cartes dans la couleur
-                    if taille >= 3:
-                        #on s'assure qu'elles soient triées
-                        dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
-                        
-                        #on parcourt les cartes de la couleur indice par indice
-                        for i in range(taille):
-                            #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
-                            if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+1)%14:
-                                #si c'est le cas on vérifie celle d'après
-                                if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+2)%14:
-                                    #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
-                                    #si il y a une figure, on retire les cartes de la hauteur concernée
-                                    cartes_libres.rejeter(dico_couleurs[couleur][i].id)
-                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
-                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
+                    # if taille >= 3:
+                    #     #on s'assure qu'elles soient triées
+                    #     dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
+                    #     
+                    #     #on parcourt les cartes de la couleur indice par indice
+                    #     for i in range(taille):
+                    #         #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
+                    #         if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+1)%14:
+                    #             #si c'est le cas on vérifie celle d'après
+                    #             if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+2)%14:
+                    #                 #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
+                    #                 #si il y a une figure, on retire les cartes de la hauteur concernée
+                    #                 cartes_libres.rejeter(dico_couleurs[couleur][i].id)
+                    #                 cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
+                    #                 cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
 
                 #on cherche un potentiel carré ou brelan
                 dico_hauteurs = cartes_libres.classer_hauteurs()
@@ -146,7 +146,7 @@ class Mainjoueur:
                 self.pts = max(self.pts, pts_deuxieme_sens)
             
     
-    def choix_input(self, carte):
+    def choix_input(self, carte ,defausse):
         '''
         renvoie : 1 si on ramasse la carte sur la défausse
                 0 si on pioche au talon
@@ -199,31 +199,76 @@ class MainjoueurIA(Mainjoueur):
         renvoie l'id de la carte choisie pour rejeter
         (après avoir vérifié qu'elle existe dans la main de l'IA)
         '''
-        #jalon_2bis : la carte à rejeter est choisie de manière aléatoire
+        id_min=""
+        sc_min=10000000
+        for carte in self.cartes:
+            sc=0
+            for carte_extra in self.cartes:
+                if carte.id==carte_extra.id:
+                   sc+=0
+                else:
+                    if carte.int_hauteur == carte_extra.int_hauteur:
+                        sc+=2
+                    if (carte_extra.int_hauteur+1%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur) or \
+                    (carte_extra.int_hauteur-1%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur):
+                        sc+=2
+                    if (carte_extra.int_hauteur+2%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur) or \
+                    (carte_extra.int_hauteur-2%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur):
+                        sc+=1
+            print(sc)
+            if sc<sc_min:
+                id_min=carte.id
+                sc_min=sc
+        return id_min
 
-        return random.choice(self.cartes).id
-
-    def choix_input(self, carte):
+    def choix_input(self, carte ,defausse):
         '''
         renvoie : 1 si on ramasse la carte sur la défausse
                   0 si on pioche au talon
         '''
-        #jalon_2bis : tirage au sort
-        return random.randint(0,1)
+        if self.score(carte,defausse)>0.15:
+            return 1
+        else:
+            return 0
 
 
-    def score(self, carte):
-        pass
-
-
-if __name__=='__main__':
-
-    #un carré de 2 et 1 suite de carreaux : Pharaon 0
-    main_1 = [Carte('c',2),Carte('d',2),Carte('h',2),Carte('s',2),Carte('d',8), Carte('d',9), Carte('d',10)]
-    main_1 = Mainjoueur(main_1)
-    main_1.compter_points()
-    assert main_1.pharaon==True, 'la pharaon de la main 1 est reconnu par le programme'
-    assert main_1.pts==0, 'et il compte bien les points'
+    def score(self, carte, defausse):
+        '''
+        Calcule le score d'une carte. Float 
+        '''
+        #on initialise le score
+        sc=0
+        #balaye la defausse sauf la derniere pour le score
+        long=len(defausse)
+        if long>1:
+            
+            for carte_def in defausse:  
+                if carte_def.int_hauteur == carte.int_hauteur or \
+                (carte_def.int_hauteur+1%13 == carte.int_hauteur and carte_def.couleur == carte.couleur) or \
+                (carte_def.int_hauteur-1%13 == carte.int_hauteur and carte_def.couleur == carte.couleur):
+                    sc-=0.10
+              
+        #balaye le main pour le score
+        for carte_m in self.cartes:
+            if carte_m.int_hauteur == carte.int_hauteur or \
+            (carte_m.int_hauteur+1%13 == carte.int_hauteur and carte_m.couleur == carte.couleur) or \
+            (carte_m.int_hauteur-1%13 == carte.int_hauteur and carte_m.couleur == carte.couleur):
+                sc+=0.25
+                
+            if (carte_m.int_hauteur+2%13 == carte.int_hauteur and carte_m.couleur == carte.couleur) or \
+            (carte_m.int_hauteur-2%13 == carte.int_hauteur and carte_m.couleur == carte.couleur):
+                sc+=0.10
+        return sc
+            
+                
+# if __name__=='__main__':
+# 
+#     #un carré de 2 et 1 suite de carreaux : Pharaon 0
+#     main_1 = [Carte('c',2),Carte('d',2),Carte('h',2),Carte('s',2),Carte('d',8), Carte('d',9), Carte('d',10)]
+#     main_1 = Mainjoueur(main_1)
+#     main_1.compter_points()
+#     assert main_1.pharaon==True, 'la pharaon de la main 1 est reconnu par le programme'
+#     assert main_1.pts==0, 'et il compte bien les points'
 
 
 
@@ -247,3 +292,4 @@ if __name__=='__main__':
     print('Valeur de la main 1 : ',main1.pts)
     print("Y'a-t-il Pharaon ? : ", main1.pharaon)
     '''
+
