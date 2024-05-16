@@ -217,6 +217,17 @@ class MainjoueurIA(Mainjoueur):
 
 
 if __name__=='__main__':
+
+    #un carré de 2 et 1 suite de carreaux : Pharaon 0
+    main_1 = [Carte('c',2),Carte('d',2),Carte('h',2),Carte('s',2),Carte('d',8), Carte('d',9), Carte('d',10)]
+    main_1 = Mainjoueur(main_1)
+    main_1.compter_points()
+    assert main_1.pharaon==True, 'la pharaon de la main 1 est reconnu par le programme'
+    assert main_1.pts==0, 'et il compte bien les points'
+
+
+
+    '''
     print('- on créer un paquet que de 52 cartes')
     paq = PaquetCartes(52)
     print('- on le bat')
@@ -235,4 +246,4 @@ if __name__=='__main__':
     main1.compter_points()
     print('Valeur de la main 1 : ',main1.pts)
     print("Y'a-t-il Pharaon ? : ", main1.pharaon)
-    
+    '''
