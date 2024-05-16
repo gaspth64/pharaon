@@ -229,7 +229,7 @@ if __name__=='__main__':
 
     #carré de 8 et brelan de 9
     #pharon ? oui
-    main_3 = [Carte('c','8'), Carte('h','8'), Carte('s','8'),Carte('d','8'), Carte('h','9'), Carte('c','9'),Carte('d','9')
+    main_3 = [Carte('c','8'), Carte('h','8'), Carte('s','8'),Carte('d','8'), Carte('h','9'), Carte('c','9'),Carte('d','9')]
     main_3 = Mainjoueur(main_3)
     main_3.compter_points()
     assert main_3.pharaon==True, 'main_3 : le programme ne signale pas le pharaon'
