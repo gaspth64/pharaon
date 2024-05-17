@@ -238,7 +238,7 @@ if __name__=='__main__':
 
     #carré de Roi, suite en pique
     #pharaon ? oui
-    main_4 = [Carte('c','K'), Carte('h','K'), Carte('s','K'),Carte('d','K'), Carte('s','6'), Carte('s',7'), Carte('s','8')]
+    main_4 = [Carte('c','K'), Carte('h','K'), Carte('s','K'),Carte('d','K'), Carte('s','6'), Carte('s','7'), Carte('s','8')]
     main_4 = Mainjoueur(main_4)
     main_4.compter_points()
     assert main_4.pharaon==True, 'main_4 : le programme ne signale pas le pharaon'
@@ -322,7 +322,7 @@ if __name__=='__main__':
 
     #suite en trèfle et brelan de Roi
     #pharaon ? non
-    main_14 = [Carte('c','8'), Carte('c','9'), Carte('c','10'), Carte('c','J'), Carte('c',K), Carte('h',K), Carte('d',K)]
+    main_14 = [Carte('c','8'), Carte('c','9'), Carte('c','10'), Carte('c','J'), Carte('c','K'), Carte('h','K'), Carte('d','K')]
     main_14 = Mainjoueur(main_14)
     main_14.compter_points()
     assert main_14.pharaon==False, 'main_14 : le programme se trompe pour pharaon'
@@ -338,7 +338,7 @@ if __name__=='__main__':
 
     #2 suites en coeur
     #pharaon ? oui
-    main_16 = [Carte('h','2'), Carte('h','3'), Carte('h','4'), Carte('h','5'), Carte('h','6'),' Carte('h',''7'),Carte('c','3')]
+    main_16 = [Carte('h','2'), Carte('h','3'), Carte('h','4'), Carte('h','5'), Carte('h','6'), Carte('h','7'),Carte('c','3')]
     main_16 = Mainjoueur(main_16)
     main_16.compter_points()
     assert main_16.pharaon==True, 'main_16 : le programme ne signale pas le pharaon'
@@ -346,7 +346,7 @@ if __name__=='__main__':
 
 
 
-        '''
+    '''
         print('- on créer un paquet que de 52 cartes')
         paq = PaquetCartes(52)
         print('- on le bat')
@@ -356,7 +356,7 @@ if __name__=='__main__':
         print('- on a créer une main, est-elle vide :',main2.estvide())
         for i in range(7):
             c = paq.tirer()
-            print('carte tirée du paquet : ',c,'\n')
+            print('carte tirée du paquet : ',c,' ')
             main0.append(c)
         main1 = Mainjoueur(main0, 'N')
         #afficher test aussi trier
@@ -365,4 +365,4 @@ if __name__=='__main__':
         main1.compter_points()
         print('Valeur de la main 1 : ',main1.pts)
         print("Y'a-t-il Pharaon ? : ", main1.pharaon)
-        '''
+    '''
