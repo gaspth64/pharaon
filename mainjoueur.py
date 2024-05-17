@@ -215,7 +215,9 @@ class MainjoueurIA(Mainjoueur):
                     if (carte_extra.int_hauteur+2%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur) or \
                     (carte_extra.int_hauteur-2%13 == carte.int_hauteur and carte_extra.couleur == carte.couleur):
                         sc+=1
-            print(sc)
+            
+            if carte.int_hauteur<8:
+                sc+=0.5
             if sc<sc_min:
                 id_min=carte.id
                 sc_min=sc
