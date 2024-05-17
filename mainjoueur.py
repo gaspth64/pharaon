@@ -109,21 +109,21 @@ class Mainjoueur:
                     #on créer une variable contenant la taille de la liste des cartes de la couleur
                     taille = len(dico_couleurs[couleur])
                     #pour voir s'il y a 3 cartes dans la couleur
-                    # if taille >= 3:
-                    #     #on s'assure qu'elles soient triées
-                    #     dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
-                    #     
-                    #     #on parcourt les cartes de la couleur indice par indice
-                    #     for i in range(taille):
-                    #         #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
-                    #         if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+1)%14:
-                    #             #si c'est le cas on vérifie celle d'après
-                    #             if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur].int_hauteur+2)%14:
-                    #                 #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
-                    #                 #si il y a une figure, on retire les cartes de la hauteur concernée
-                    #                 cartes_libres.rejeter(dico_couleurs[couleur][i].id)
-                    #                 cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
-                    #                 cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
+                    if taille >= 3:
+                        #on s'assure qu'elles soient triées
+                        dico_couleurs[couleur].sort(key=lambda x:x.int_hauteur)
+                        
+                        #on parcourt les cartes de la couleur indice par indice
+                        for i in range(taille):
+                            #on test si l'entier de la hauteur de la carte d'après est celui d'après celui de la carte
+                            if dico_couleurs[couleur][(i+1)%taille].int_hauteur == (dico_couleurs[couleur][i].int_hauteur+1)%14:
+                                #si c'est le cas on vérifie celle d'après
+                                if dico_couleurs[couleur][(i+2)%taille].int_hauteur == (dico_couleurs[couleur][i].int_hauteur+2)%14:
+                                    #si on arrive ici, c'est que la carte d'indice i est le début d'une suite
+                                    #si il y a une figure, on retire les cartes de la hauteur concernée
+                                    cartes_libres.rejeter(dico_couleurs[couleur][i].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+1)%taille].id)
+                                    cartes_libres.rejeter(dico_couleurs[couleur][(i+2)%taille].id)
 
                 #on cherche un potentiel carré ou brelan
                 dico_hauteurs = cartes_libres.classer_hauteurs()
@@ -413,4 +413,3 @@ if __name__=='__main__':
         print('Valeur de la main 1 : ',main1.pts)
         print("Y'a-t-il Pharaon ? : ", main1.pharaon)
     '''
-
